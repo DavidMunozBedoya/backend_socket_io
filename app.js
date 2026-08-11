@@ -4,6 +4,8 @@ const form = document.getElementById('form');
 const input = document.getElementById('input');
 const messages = document.getElementById('messages');
 
+
+// enviando mensaje al servidor
 form.addEventListener('submit', (e) => {
    e.preventDefault();
    if (input.value) {
@@ -12,9 +14,13 @@ form.addEventListener('submit', (e) => {
    }
 });
 
-socket.on('chat message', (msg) =>{
+// recibiendo mensaje del servidor
+socket.on('chat message', (msg) => {
    const item = document.createElement('li');
    item.textContent = msg;
    messages.appendChild(item);
-   window.scrollTo(0, document.body.scrollHeight);
+   window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+   });
 });

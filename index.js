@@ -15,8 +15,11 @@ app.get('/', (req, res) => {
    res.sendFile(join(__dirname, 'index.html'));
 });
 
+//puente de comunicación entre el servidor y el cliente
 io.on('connection', (socket) => {
+   //escuchando el evento 'chat message' y emitiendo el mensaje a todos los clientes conectados
    socket.on('chat message', (msg) => {
+      // reenviando el mensaje a todos los clientes conectados
       io.emit('chat message', msg);
    });
    // socket.on('disconnect', () =>{
